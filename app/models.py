@@ -11,10 +11,10 @@ class User(db.Model):
     posts = db.relationship('Post', back_populates='author', lazy='dynamic')
 
     def __repr__(self):
-        return f'<User {self.username}'
+        return f'<User: {self.username}>'
 
 
-class Posts(db.Model):
+class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
@@ -22,4 +22,4 @@ class Posts(db.Model):
     author = db.relationship('User', back_populates='posts')
 
     def __repr__(self):
-        return f'<Post {self.body}>'
+        return f'<Post: {self.body}>'
