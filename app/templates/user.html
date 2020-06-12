@@ -5,7 +5,18 @@
     <table>
         <tr valign="top">
             <td><img src="{{ user.avatar(128) }}"</td>
-            <td><h1>User: {{ user.username }}</h1></td>
+            <td>
+                <h1>User: {{ user.username }}</h1>
+                {% if user.about %}
+                    <p>{{ user.about }}</p>
+                {% endif %}
+                {% if user.last_seen %}
+                    <p>Visto por último em: {{ user.last_seen }}</p>
+                {% endif %}
+                {% if user == current_user %}
+                <p><a href="{{ url_for('edit_profile') }}">Editar perfil</a></p>
+                {% endif %}
+            </td>
         </tr>
     </table>
 
